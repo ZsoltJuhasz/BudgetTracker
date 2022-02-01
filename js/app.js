@@ -117,11 +117,61 @@ class UI {
     let total = 0;
     if (this.itemList.length > 0) {
       //console.log(this.itemList);
+      total = this.itemList.reduce(function(acc,curr){  //accumulator,current
+        //console.log(`Total is ${acc} and the current value is ${curr.amount}`);
+        acc += curr.amount;
+        return acc;
+      },0);
     }
 
     this.expenseAmount.textContent = total;
 
     return total;
+  }
+
+  //kiadás szerkesztése ikonnak a metódusa
+  editExpense(element){
+    let id = parseInt(element.dataset.id);
+    let parent = element.parentElement.parentElement.parentElement; //4-et ugrunk vissza a szülő elemre
+
+    //eltávolítás a DOM-ból
+    this.expenseList.removeChild(parent);
+
+    //eltávolítás a listából
+    let expense = this.itemList.filter(function(item){
+      return item.id === id;
+    })
+
+    //érték mutatása
+    this.expenseInput.value = expense[0].title;
+    this.amountInput.value = expense[0].amount;
+
+    //eltávolítás a listából
+    let tempList = this.itemList.filter(function(item){
+      return item.id !== id;
+    })
+
+    this.itemList = tempList;
+    this.showBalance();
+
+  }
+
+  //kiadás törlése ikonnak a metódusa
+  deleteExpense(element){
+    let id = parseInt(element.dataset.id);
+    let parent = element.parentElement.parentElement.parentElement; //4-et ugrunk vissza a szülő elemre
+    
+    //eltávolítás a DOM-ból
+    this.expenseList.removeChild(parent);
+
+    //eltávolítás a listából
+    let tempList = this.itemList.filter(function(item){
+      return item.id !== id;
+    })
+
+    this.itemList = tempList;
+    this.showBalance();
+
   }
 
 }
@@ -148,7 +198,15 @@ function eventListeners() {
 
 
   //expense klikk
-  expenseList.addEventListener("click", function () { })
+  expenseList.addEventListener("click", function () {
+    //console.log(event.target);
+    if(event.target.parentElement.classList.contains('edit-icon')){
+      ui.editExpense(event.target.parentElement);
+    }
+    else if(event.target.parentElement.classList.contains('delete-icon')){
+      ui.deleteExpense(event.target.parentElement);
+    }
+  });
 
 }
 
