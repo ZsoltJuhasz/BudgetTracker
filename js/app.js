@@ -81,9 +81,8 @@ class UI {
       this.itemID++;
       this.itemList.push(expense); //hozzáadjuk a költégeket 
       this.addExpense(expense);
-      this.showBalance();
-
       //egyenleg mutatás
+      this.showBalance();
     }
   }
 
@@ -160,7 +159,7 @@ class UI {
   deleteExpense(element){
     let id = parseInt(element.dataset.id);
     let parent = element.parentElement.parentElement.parentElement; //4-et ugrunk vissza a szülő elemre
-    
+
     //eltávolítás a DOM-ból
     this.expenseList.removeChild(parent);
 
