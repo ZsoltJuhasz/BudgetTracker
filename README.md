@@ -2,6 +2,6 @@
 
 ##Közreműködők
 
-*Barabaás Gergely
-*Juhász Zsolt
-*Zsolnay Bernadett
+* Barabaás Gergely
+* Juhász Zsolt
+* Zsolnay Bernadett
