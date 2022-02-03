@@ -1,6 +1,6 @@
 # BudgetTracker
 
-##Közreműködők
+## Közreműködők
 
 * Barabaás Gergely
 * Juhász Zsolt
